@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令练习</title>
+</head>
+<body>
+<!-- 2.留坑 -->
+<div id="app"></div>
+
+
+<!-- 1.引包 -->
+<script type="text/javascript" src="vue.js"></script>
+
+<!-- 3.实例化 -->
+<script type="text/javascript">
+    new Vue({
+        el:'#app',
+        template:`
+        <div>
+            <div v-text='testtext'></div>
+            <hr/>
+
+            <div v-html='testhtml'></div>
+            <hr/>
+
+            <button v-if='num == 1'>测试vif</button>
+            <button v-else-if='num == 2'>测试velseif</button>
+            <button v-else>测试velse</button>
+            <hr/>
+
+            <div v-show='testshow'>这里是V-SHOW</div>
+            <hr/>
+
+            <ul>
+              <li v-for="item in testarray"> {{item}} </li>
+            </ul>
+            <hr/>
+
+            <ul>
+              <li v-for="(item,index) in testarray"> 第{{ index }}个，{{item}} </li>
+            </ul>
+            <hr/>
+
+            <ul>
+              <li v-for="(value,key,index) in testobj"> 第{{ index }}个，{{key}} : {{value}} </li>
+            </ul>
+            <hr/>
+        </div>
+        `,
+        data:function () {
+            return {
+                testtext:"<h1>此处测试v-text</h1>",
+                testhtml:"<h1>此处测试v-html</h1>",
+                num:2,
+                testshow:true,
+                testarray:['篮球','乒乓球','羽毛球'],
+                testobj:{'name':'Bruce Lee','age':72,'interest':'武术'}
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

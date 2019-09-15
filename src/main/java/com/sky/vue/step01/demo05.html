@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+</head>
+<body>
+<!-- 2.留坑 -->
+<!-- 双向数据绑定，内存改变影响页面，页面改变影响内存 -->
+<div id="app"></div>
+
+
+<!-- 1.引包 -->
+<script type="text/javascript" src="vue.js"></script>
+
+<!-- 3.实例化 -->
+<script type="text/javascript">
+    new Vue({
+        el:'#app',
+        template:`
+        <div>
+            <input type="text" v-bind:value="name" :class="name">
+            <input type="text" v-model:value="name" :class="name">
+            <button v-on:click="change()">点我改变name的值</button>
+        </div>
+        `,
+        data:function () {
+            return {
+                name:"史战伟"
+            }
+        },
+        methods:{
+            change:function () {
+                this.name = "我变便了"
+            }
+        }
+    })
+</script>
+</body>
+</html>

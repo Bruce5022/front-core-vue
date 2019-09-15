@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器的使用-组件内</title>
+</head>
+<body>
+<!-- 2.留坑 -->
+<!-- 双向数据绑定，内存改变影响页面，页面改变影响内存 -->
+<div id="app">
+
+    我输入的：<input type="text" name="str" v-model:value="str" :class="str"></br>
+    翻转输出：{{ str | reverseFilter }} </br>
+    {{ str | reverseFilter('翻转输出-2：') }} </br>
+</div>
+
+
+<!-- 1.引包 -->
+<script type="text/javascript" src="vue.js"></script>
+
+<!-- 3.实例化 -->
+<script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data:function () {
+            return {
+                str:"史战伟"
+            }
+        },
+        filters:{
+            reverseFilter:function (val,prefix) {
+
+                // 字符串转数组   翻转  数组转字符串
+                if(!prefix){
+                    prefix = ''
+                }
+                // 默认的第一个参数位置，一定是处理的参数，后面可以自己加自己的参数，使用过滤器的时候，传进来
+                return prefix+val.split('').reverse().join('');
+            }
+        }
+    })
+</script>
+</body>
+</html>

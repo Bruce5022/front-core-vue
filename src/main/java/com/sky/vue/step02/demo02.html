@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件化开发-全局注册</title>
+</head>
+<body>
+<div id="app"></div>
+
+
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+    Vue.component("MyHeader",{
+        template:`
+        <div>头部 </div>
+        `
+    })
+
+    Vue.component("MyBody",{
+        template:`
+        <div>中间 </div>
+        `
+    })
+
+    Vue.component("MyFoot",{
+        template:`
+        <div>尾部 </div>
+        `
+    })
+
+    new Vue({
+        el:'#app',
+        template:`
+        <div>
+            <my-header></my-header>
+            <my-body></my-body>
+            <my-foot></my-foot>
+        </div>
+        `,
+        data:function () {
+            return {
+                msg:"Hello Vue !!!"
+            }
+        }
+    })
+</script>
+</body>
+</html>

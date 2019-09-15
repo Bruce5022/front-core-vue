@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch监听数据-复杂对象</title>
+</head>
+<body>
+<!-- 2.留坑 -->
+<div id="app">
+    <div>watch监听数据-复杂对象</div>
+    <input type="text" name="msg" v-model:value="msg.name"></br>
+</div>
+
+
+<!-- 1.引包 -->
+<script type="text/javascript" src="vue.js"></script>
+
+<!-- 3.实例化 -->
+<script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data:function () {
+            return {
+                msg:{
+                    id:1,
+                    name:"史战伟"
+                }
+            }
+        },
+        watch:{
+            // msg:function (newVal,oldVal) {
+            //     console.log(newVal,oldVal)
+            //     if(newVal.name == 'love'){
+            //         alert("Good morning !")
+            //     }
+            // },
+
+            msg:{
+                handler(val){
+                    if(val.name=='love'){
+                        alert("Good morning !")
+                    }
+                },
+                deep:true//开启深度监听
+            }
+
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>引包，留坑，实例化</title>
+</head>
+<body>
+<div id="app"></div>
+
+
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el:'#app',
+        template:`
+        <div>此处模版内容部分: {{ msg }} </div>
+        `,
+        data:function () {
+            return {
+                msg:"Hello Vue !!!"
+            }
+        }
+    })
+</script>
+</body>
+</html>
