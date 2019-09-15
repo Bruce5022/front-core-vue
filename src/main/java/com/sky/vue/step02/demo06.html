@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot插槽和ref、$parent---04</title>
+</head>
+<body>
+<!-- 2.留坑 -->
+<div id="app"></div>
+
+
+<!-- 1.引包 -->
+<script type="text/javascript" src="vue.js"></script>
+
+<!-- 3.实例化 -->
+<script type="text/javascript">
+    var Parent = {
+        template: `
+        <div>此处是父组件
+        <slot name="s1"></slot>
+        </div>
+        `
+    }
+
+    // 如果父组件中，slot指定名称，在子组件中，必须指定名称，否则不能正常显示！！！
+    // 答案：给子组件，指定插槽名
+    new Vue({
+        el:'#app',
+        components:{
+            Parent
+        },
+        template:`
+        <div>
+            <parent>
+                <div slot="s1">插槽内容1</div>
+                <div>插槽内容2</div>
+                <div slot="s1">插槽内容3</div>
+            </parent>
+        </div>
+        `
+    })
+</script>
+</body>
+</html>
