@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件通信-父传子</title>
+</head>
+<body>
+<!-- 2.留坑 -->
+<div id="app"></div>
+
+
+<!-- 1.引包 -->
+<script type="text/javascript" src="vue.js"></script>
+
+<!-- 3.实例化 -->
+<script type="text/javascript">
+
+    var Child = {
+        // 子组件定义好了要接收的props，可以直接使用
+        template: `
+        <div>此处是[ 子 ]组件
+        <div>父组件消息：{{sendchild}}</div>
+        </div>
+        `,
+        // 声明要接收的东西
+        props:['sendchild']
+    }
+
+    var Parent = {
+        // 父组件通过属性sendchild，传递了数据给子组件
+        template: `
+        <div>此处是[ 父 ]组件
+            <child sendchild="滴滴打车吗？"></child>
+        </div>
+        `,
+        components:{
+            Child
+        }
+    }
+
+    new Vue({
+        el:'#app',
+        components:{
+            Parent
+        },
+        template:`
+        <div>
+            <parent></parent>
+        </div>
+        `
+    })
+</script>
+</body>
+</html>

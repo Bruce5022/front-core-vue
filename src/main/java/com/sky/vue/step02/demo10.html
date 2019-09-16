@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非父子组件通信</title>
+</head>
+<body>
+<!-- 2.留坑 -->
+<div id="app"></div>
+
+
+<!-- 1.引包 -->
+<script type="text/javascript" src="vue.js"></script>
+
+<!-- 3.实例化 -->
+<script type="text/javascript">
+
+    //在vue上面挂载一个$bus作为中央处理组件
+    Vue.prototype.$bus=new Vue()
+
+    var MyHeader = Vue.extend({
+        template:`
+        <div>此为头部
+        <div style="color: aquamarine">{{headMsg}}</div>
+        </div>
+        `,
+        data:function () {
+            return {
+                headMsg:"头部信息"
+            }
+        },
+        created:function () {
+
+            //监听自定义事件获取数据
+            // 方式一：
+            // var self = this
+            // this.$bus.$on('receiveFoot',function (val) {
+            //     self.headMsg = val
+            // })
+
+            // 方式二：
+            var self = this
+            this.$bus.$on('receiveFoot',val=>{
+                this.headMsg = val
+            })
+
+        }
+    })
+
+    var MyBody={
+        template:`
+        <div>此为中间
+        <div style="color: aquamarine">{{bodyMsg}}</div>
+        </div>
+        `,
+        data:function () {
+            return {
+                bodyMsg:"中间信息"
+            }
+        }
+    }
+
+    var MyFoot={
+        template:`
+        <div>此为尾部
+         <div style="color: aquamarine">{{footMsg}}
+         <button @click="sendHead">给头部发消息</button>
+         </div>
+        </div>
+        `,
+        data:function () {
+            return {
+                footMsg:"尾部信息"
+            }
+        },
+        methods:{
+            sendHead:function () {
+                this.$bus.$emit('receiveFoot','底部传的数据')//触发自定义事件传递数据
+            }
+        }
+    }
+
+    new Vue({
+        el:'#app',
+        components:{
+            MyHeader,
+            MyBody,
+            MyFoot
+        },
+        template:`
+        <div>
+            <my-header></my-header>
+            <my-body></my-body>
+            <my-foot></my-foot>
+        </div>
+        `
+    })
+</script>
+</body>
+</html>
