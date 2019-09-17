@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由跳转-标签</title>
+</head>
+<body>
+<!-- 2.留坑 -->
+<div id="app"></div>
+
+
+<!-- 1.引包 -->
+<script type="text/javascript" src="vue.js"></script>
+<!-- 引入路由插件 -->
+<script type="text/javascript" src="vue-router.js"></script>
+
+<!-- 3.实例化 -->
+<script type="text/javascript">
+
+    var login = {
+        template:`
+        <div>
+            我是--登录--页面
+        </div>
+        `
+    }
+
+    var register = {
+        template:`
+        <div>
+            我是--注册--页面
+        </div>
+        `
+    }
+
+    //  <!-- 安装路由插件 -->
+    Vue.use(VueRouter)
+
+    // 创建路由对象
+    var router = new VueRouter({
+        // 配置路由对象
+        routes:[
+            {path:"/login",name:"loginPage",component:login},
+            {path:"/register",name:"registerPage",component:register}
+        ]
+    })
+
+
+    new Vue({
+        el:'#app',
+        router:router,
+        template:`
+        <div>
+            <router-link to='/login'>去登录</router-link>|
+            <router-link to='/register'>去注册</router-link>
+            <router-view></router-view>
+        </div>
+        `
+    })
+</script>
+</body>
+</html>
